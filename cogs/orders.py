@@ -3,7 +3,7 @@ from discord.ext import commands
 
 import cogs._json, cogs._functions
 
-
+# Main Commands Cog
 class ordersCog(commands.Cog):
     def __init__(self, kurisu):
         self.kurisu = kurisu

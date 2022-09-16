@@ -1,8 +1,6 @@
 import discord, random, datetime
 from discord.ext import commands
 
-# In cogs we make our own class
-# for d.py which subclasses commands.Cog
 
 class eventsCog(commands.Cog):
     def __init__(self, kurisu):
