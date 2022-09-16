@@ -6,7 +6,7 @@ import datetime
 # In cogs we make our own class
 # for d.py which subclasses commands.Cog
 
-class EventsCog(commands.Cog):
+class eventsCog(commands.Cog):
     def __init__(self, kurisu):
         self.kurisu = kurisu
 
@@ -18,29 +18,35 @@ class EventsCog(commands.Cog):
     async def on_member_join(self, member):
         # On member joins we find a channel called general and if it exists,
         # send an embed welcoming them to our guild
-        channel = discord.utils.get(member.guild.text_channels, name='recording')
+        channel = discord.utils.get(member.guild.text_channels, name='general')
         if channel:
             embed = discord.Embed(description='Welcome to our guild!', color=random.choice(self.kurisu.colour_list))
-            embed.set_thumbnail(url=member.avatar_url)
-            embed.set_author(name=member.name, icon_url=member.avatar_url)
-            embed.set_footer(text=member.guild, icon_url=member.guild.icon_url)
+            embed.set_thumbnail(url=member.avatar.url)
+            embed.set_author(name=member.name, icon_url=member.avatar.url)
+            embed.set_footer(text=member.guild, icon_url=member.guild.icon.url)
             embed.timestamp = datetime.datetime.utcnow()
 
             await channel.send(embed=embed)
+
+        await member.create_dm()
+        await member.dm_channel.send(f"Hi {member.name}, welcome to {member.guild.name}!")
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         # On member remove we find a channel called general and if it exists,
         # send an embed saying goodbye from our guild-
-        channel = discord.utils.get(member.guild.text_channels, name='recording')
+        channel = discord.utils.get(member.guild.text_channels, name='general')
         if channel:
             embed = discord.Embed(description='Goodbye from all of us..', color=random.choice(self.kurisu.colour_list))
-            embed.set_thumbnail(url=member.avatar_url)
-            embed.set_author(name=member.name, icon_url=member.avatar_url)
-            embed.set_footer(text=member.guild, icon_url=member.guild.icon_url)
+            embed.set_thumbnail(url=member.avatar.url)
+            embed.set_author(name=member.name, icon_url=member.avatar.url)
+            embed.set_footer(text=member.guild, icon_url=member.guild.icon.url)
             embed.timestamp = datetime.datetime.utcnow()
 
             await channel.send(embed=embed)
+
+        #await member.create_dm()
+        #await member.dm_channel.send(f"Goodbye {member.name}, sorry to see you leave {member.guild.name}!")
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
@@ -64,5 +70,22 @@ class EventsCog(commands.Cog):
             await ctx.send("Hey! You lack permission to use this command.")
         raise error
 
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if "cool" in message.content:
+            await message.add_reaction('\U0001F60E')#Unicode to python: '+' becomes '000' and "\" before "U"
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if "lmfao" in message.content:
+            await message.add_reaction('\U0001F923')
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if "lol" in message.content:
+            await message.add_reaction('\U0001F604')
+    
+
 async def setup(kurisu):
-    await kurisu.add_cog(EventsCog(kurisu))
+    await kurisu.add_cog(eventsCog(kurisu))

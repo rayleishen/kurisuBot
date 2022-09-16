@@ -14,3 +14,16 @@ def chooseRandomImage(directory="images"):
     choice = random.randint(0, len(allImages) - 1)
     chosenImage = allImages[choice] 
     return chosenImage
+
+def chooseSixDigitNumber():
+    return random.randint(1, 440000)
+
+def getCoinFlip():
+    coin = random.randint(1, 2)
+    if coin == 1:
+        return "Heads"
+    elif coin == 2:
+        return "Tails"
+
+def getDiceRoll():
+    return random.randint(1, 6)
