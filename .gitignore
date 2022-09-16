@@ -1,4 +1,5 @@
 .env
 secret.json
 /__pycache__
-.pyc
+/cogs/__pycache__
+*.pyc
