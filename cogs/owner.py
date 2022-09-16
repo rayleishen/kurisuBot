@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import platform
+
 
 import cogs._json, cogs._functions
 

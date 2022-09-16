@@ -1,6 +1,5 @@
-import discord
+import discord, requests, json
 from discord.ext import commands
-import platform, requests, json
 
 import cogs._json, cogs._functions
 

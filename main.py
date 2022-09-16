@@ -1,9 +1,8 @@
-from calendar import SATURDAY
 import discord
 from discord.ext import commands
 import logging, json, platform, os, asyncio
 from pathlib import Path
-import datetime
+
 
 
 # Current working directory

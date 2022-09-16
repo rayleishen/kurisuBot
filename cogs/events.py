@@ -1,7 +1,5 @@
-import discord
+import discord, random, datetime
 from discord.ext import commands
-import random
-import datetime
 
 # In cogs we make our own class
 # for d.py which subclasses commands.Cog
@@ -20,7 +18,7 @@ class eventsCog(commands.Cog):
         # send an embed welcoming them to our guild
         channel = discord.utils.get(member.guild.text_channels, name='general')
         if channel:
-            embed = discord.Embed(description='Welcome to our guild!', color=random.choice(self.kurisu.colour_list))
+            embed = discord.Embed(description='Welcome to our server!', color=random.choice(self.kurisu.colour_list))
             embed.set_thumbnail(url=member.avatar.url)
             embed.set_author(name=member.name, icon_url=member.avatar.url)
             embed.set_footer(text=member.guild, icon_url=member.guild.icon.url)
