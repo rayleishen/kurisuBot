@@ -1,11 +1,9 @@
+from calendar import SATURDAY
 import discord
 from discord.ext import commands
 import logging, json, platform, os, asyncio
 from pathlib import Path
 import datetime
-from cogs.events import EventsCog
-
-from cogs.orders import OrdersCog
 
 
 # Current working directory
@@ -23,7 +21,7 @@ kurisu.blacklisted_users = []
 kurisu.cwd = cwd
 kurisu.pythonVersion = platform.python_version()
 kurisu.discordpyVersion = discord.__version__
-kurisu.version = '1.0.0'
+kurisu.version = '3.0.0'
 kurisu.lineBreak = "~~~~~~~~~~~~~~~~~~~~"
 
 kurisu.colors = {
@@ -89,7 +87,7 @@ async def on_message(message):
     if message.content.lower().startswith("help"):
         await message.channel.send("Hey! Why don't you run the help command with `k!help`")
 
-    #await bot.process_commands(message)
+    await kurisu.process_commands(message)
 
 
 # Doing cool cog things
@@ -107,8 +105,6 @@ if __name__ == '__main__':
         async with kurisu:
             # Loads events and orders
             await load_extensions()
-            await kurisu.add_cog(OrdersCog(kurisu))
-            await kurisu.add_cog(EventsCog(kurisu))
 
             # Runs bot
             await kurisu.start(kurisu.config_token)
