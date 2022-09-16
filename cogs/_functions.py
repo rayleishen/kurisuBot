@@ -1,5 +1,4 @@
 import random, os
-from pathlib import Path
 
 
 # Random images
