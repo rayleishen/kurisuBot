@@ -26,7 +26,6 @@ class nsfwCog(commands.Cog):
         pass
         
 
-    
 
 async def setup(kurisu):
     await kurisu.add_cog(nsfwCog(kurisu))

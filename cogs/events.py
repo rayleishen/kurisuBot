@@ -12,11 +12,11 @@ class eventsCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        # On member joins we find a channel called general and if it exists,
+        # On member joins we find a channel called welcome and if it exists,
         # send an embed welcoming them to our guild
-        channel = discord.utils.get(member.guild.text_channels, name='general')
+        channel = discord.utils.get(member.guild.text_channels, name='welcome')
         if channel:
-            embed = discord.Embed(description='Welcome to our server!', color=random.choice(self.kurisu.colour_list))
+            embed = discord.Embed(description='Welcome to our server where we praise our lord and saviour Avery Cheng', color=random.choice(self.kurisu.colour_list))
             embed.set_thumbnail(url=member.avatar.url)
             embed.set_author(name=member.name, icon_url=member.avatar.url)
             embed.set_footer(text=member.guild, icon_url=member.guild.icon.url)
@@ -29,9 +29,9 @@ class eventsCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
-        # On member remove we find a channel called general and if it exists,
+        # On member remove we find a channel called welcome and if it exists,
         # send an embed saying goodbye from our guild-
-        channel = discord.utils.get(member.guild.text_channels, name='general')
+        channel = discord.utils.get(member.guild.text_channels, name='welcome')
         if channel:
             embed = discord.Embed(description='Goodbye from all of us..', color=random.choice(self.kurisu.colour_list))
             embed.set_thumbnail(url=member.avatar.url)
@@ -71,17 +71,18 @@ class eventsCog(commands.Cog):
     async def on_message(self, message):
         if "cool" in message.content:
             await message.add_reaction('\U0001F60E')#Unicode to python: '+' becomes '000' and "\" before "U"
+        
+        elif "lol" in message.content:
+            await message.add_reaction('\U0001F604')#Unicode to python: '+' becomes '000' and "\" before "U"
+            
+        elif "bonus point" in message.content or "bp" in message.content or "bonus points" in message.content:
+            #<:bonus_point:1205350697718124555>         TEST
+            #<:bonus_point:1205349576899305474>         MAIN
+            await message.add_reaction('<:bonus_point:1205349576899305474>')
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if "lmfao" in message.content:
-            await message.add_reaction('\U0001F923')
-
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if "lol" in message.content:
-            await message.add_reaction('\U0001F604')
+        
+        
     
-
+        
 async def setup(kurisu):
     await kurisu.add_cog(eventsCog(kurisu))
